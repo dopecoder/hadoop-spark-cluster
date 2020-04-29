@@ -52,7 +52,7 @@ if [[ $1 = "deploy" ]]; then
   docker run -dP --cpus="4" --memory="8g" --network sparknet --name node2 -it -h node2 sparkbase
   docker run -dP --cpus="4" --memory="8g" --network sparknet --name node3 -it -h node3 sparkbase
   docker run -dP --cpus="4" --memory="8g" --network sparknet --name node4 -it -h node4 sparkbase
-  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node5 -it -h node4 sparkbase
+  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node5 -it -h node5 sparkbase
 
   # Format nodemaster
   echo ">> Formatting hdfs ..."

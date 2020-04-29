@@ -49,7 +49,7 @@ if [[ $1 = "deploy" ]]; then
 
   # 3 nodes
   echo ">> Starting nodes master and worker nodes ..."
-  docker run -dP -v ~/hadoop_mp:/home/hadoop/sf --cpus="4" --memory="8g" --network sparknet --name nodemaster -h nodemaster -it sparkbase
+  docker run -dP -v $(pwd)/hadoop_mp:/home/hadoop/sf --cpus="4" --memory="8g" --network sparknet --name nodemaster -h nodemaster -it sparkbase
   docker run -dP --cpus="4" --memory="8g" --network sparknet --name node2 -it -h node2 sparkbase
   docker run -dP --cpus="4" --memory="8g" --network sparknet --name node3 -it -h node3 sparkbase
   docker run -dP --cpus="4" --memory="8g" --network sparknet --name node4 -it -h node4 sparkbase

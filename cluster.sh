@@ -42,17 +42,18 @@ if [[ $1 = "stop" ]]; then
 fi
 
 if [[ $1 = "deploy" ]]; then
+  mkdir hadoop_mp
   docker rm -f `docker ps -a | grep sparkbase | awk '{ print $1 }'` # delete old containers
   docker network rm sparknet
   docker network create --driver bridge sparknet # create custom network
 
   # 3 nodes
   echo ">> Starting nodes master and worker nodes ..."
-  docker run -dP --storage-opt size=15G --cpus="4" --memory="8g" --network sparknet --name nodemaster -h nodemaster -it sparkbase
-  docker run -dP --storage-opt size=50G --cpus="4" --memory="8g" --network sparknet --name node2 -it -h node2 sparkbase
-  docker run -dP --storage-opt size=50G --cpus="4" --memory="8g" --network sparknet --name node3 -it -h node3 sparkbase
-  docker run -dP --storage-opt size=50G --cpus="4" --memory="8g" --network sparknet --name node4 -it -h node4 sparkbase
-  docker run -dP --storage-opt size=50G --cpus="4" --memory="8g" --network sparknet --name node5 -it -h node5 sparkbase
+  docker run -dP -v ~/hadoop_mp:~/sf --cpus="4" --memory="8g" --network sparknet --name nodemaster -h nodemaster -it sparkbase
+  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node2 -it -h node2 sparkbase
+  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node3 -it -h node3 sparkbase
+  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node4 -it -h node4 sparkbase
+  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node5 -it -h node5 sparkbase
 
   # Format nodemaster
   echo ">> Formatting hdfs ..."

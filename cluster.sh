@@ -2,7 +2,7 @@
 
 # Bring the services up
 function startServices {
-  docker start nodemaster node2 node3 node4
+  docker start nodemaster node2 node3 node4 node5
   sleep 5
   echo ">> Starting hdfs ..."
   docker exec -u hadoop -it nodemaster hadoop/sbin/start-dfs.sh

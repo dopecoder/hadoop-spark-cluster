@@ -66,6 +66,11 @@ if [[ $1 = "info" ]]; then
   exit
 fi
 
+if [[ $1 = "login" ]]; then
+  sudo docker exec -it nodemaster bash
+  exit
+fi
+
 echo "Usage: cluster.sh deploy|start|stop"
 echo "                 deploy - create a new Docker network"
 echo "                 start  - start the existing containers"

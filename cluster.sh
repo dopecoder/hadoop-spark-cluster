@@ -37,7 +37,7 @@ if [[ $1 = "stop" ]]; then
   docker exec -u hadoop -d node3 /home/hadoop/sparkcmd.sh stop
   docker exec -u hadoop -d node4 /home/hadoop/sparkcmd.sh stop
   docker exec -u hadoop -d node5 /home/hadoop/sparkcmd.sh stop
-  docker stop nodemaster node2 node3 node4
+  docker stop nodemaster node2 node3 node4 node5
   exit
 fi
 

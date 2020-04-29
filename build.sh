@@ -1,4 +1,4 @@
-cd scalable
+cd scalabase
 ./build.sh
 cd ../spark
 ./build.sh

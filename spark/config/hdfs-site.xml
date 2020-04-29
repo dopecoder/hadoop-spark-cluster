@@ -11,7 +11,7 @@
         </property>
         <property>
                 <name>dfs.blocksize</name>
-                <value>67108864</value>
+                <value>33554432</value>
         </property>
         <property>
                 <name>dfs.namenode.handler.count</name>

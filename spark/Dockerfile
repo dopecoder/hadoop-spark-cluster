@@ -37,6 +37,7 @@ COPY config/sparkcmd.sh /home/hadoop/
 COPY config/hadoop-env.sh /home/hadoop/
 COPY config/wc.sh /home/hadoop/
 COPY config/run.sh /home/hadoop/
+COPY config/perm.sh /home/hadoop/
 
 
 COPY config/core-site.xml config/hdfs-site.xml config/mapred-site.xml \

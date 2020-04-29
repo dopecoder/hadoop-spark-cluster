@@ -36,6 +36,8 @@ COPY config/workers /home/hadoop/spark/conf/slaves
 COPY config/sparkcmd.sh /home/hadoop/
 COPY config/hadoop-env.sh /home/hadoop/
 COPY config/wc.sh /home/hadoop/
+COPY config/run.sh /home/hadoop/
+
 
 COPY config/core-site.xml config/hdfs-site.xml config/mapred-site.xml \
     config/yarn-site.xml config/workers /home/hadoop/hadoop/etc/hadoop/

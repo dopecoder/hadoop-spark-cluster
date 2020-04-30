@@ -15,20 +15,21 @@ do
     echo "Deleted the ${file_size} GB file in local FS..."
     cd ../../
     echo "Starting Hadoop Sort"
-    hadoop jar /home/hadoop/sf/HadoopSort/target/HadoopSort-*.jar /user/hadoop/input /user/hadoop/output > ~/sf/${file_size}-GB-${1}--logs.txt
+    hadoop jar /home/hadoop/sf/HadoopSort/target/HadoopSort-*.jar /user/hadoop/input /user/hadoop/output > ~/sf/${file_size}-GB-${1}-hp-logs.txt
     echo "Finished Hadoop Sort"
     # hadoop fs -rm /user/hadoop/input/input.txt
     hadoop fs -rm -r -f /user/hadoop/output
 
     echo "Starting Spark Sort"
-    spark-submit \
+    time -p spark-submit \
     --class SparkSort \
     --master yarn \
     --deploy-mode cluster \
     --driver-memory 4g \
     --executor-memory 2g \
     --executor-cores 1 \
-    /home/hadoop/src/SparkSort.jar    
+    --num-executors 50 \
+    /home/hadoop/src/SparkSort.jar > ~/sf/${file_size}-GB-${1}-spark-logs.txt
     echo "Finished Spark Sort"
     hadoop fs -rm -r -f /user/hadoop/output
     hadoop fs -rm /user/hadoop/input/input.txt

@@ -8,20 +8,12 @@ import scala.Tuple2;
 public class SparkSort {
 
     public static void main(String[] args) {
-        SparkConf sc = new SparkConf().setAppName("Spark Sort").setMaster("local");
+        SparkConf sc = new SparkConf().setAppName("Spark Sort");
         JavaSparkContext sparkContext = new JavaSparkContext(sc);
-
-        /*if (args.length == 0) {
-            System.err.println("Usage: Main <file>");
-            System.exit(1);
-        }*/
 
         String in = "/user/hadoop/input";
         String out = "/user/hadoop/output";
         JavaRDD<String> textFile = sparkContext.textFile(in);
-        /*JavaPairRDD<String, String> keyValuePairs = textFile.mapToPair(obj -> {
-            return new Tuple2<String, String>(substring(0,10),s.substring(10));
-        });*/
 
         PairFunction<String, String, String> keyValuePairs =
                new PairFunction<String, String, String>() {
@@ -31,9 +23,5 @@ public class SparkSort {
                 };
         JavaPairRDD<String, String> pairs = textFile.mapToPair(keyValuePairs).sortByKey(true);
         pairs.map(x -> x._1 + " " + x._2 + "\r").saveAsTextFile(out);
-
-
-        //pairs.saveAsTextFile(out);
     }
-        //System.exit(1);
 }

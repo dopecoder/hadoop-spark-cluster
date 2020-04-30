@@ -2,7 +2,7 @@
 
 # Bring the services up
 function startServices {
-  docker start nodemaster node2 node3 node4 node5
+  docker start nodemaster 1Large
   sleep 5
   echo ">> Starting hdfs ..."
   docker exec -u hadoop -it nodemaster hadoop/sbin/start-dfs.sh
@@ -12,10 +12,7 @@ function startServices {
   sleep 5
   echo ">> Starting Spark ..."
   docker exec -u hadoop -d nodemaster /home/hadoop/sparkcmd.sh start
-  docker exec -u hadoop -d node2 /home/hadoop/sparkcmd.sh start
-  docker exec -u hadoop -d node3 /home/hadoop/sparkcmd.sh start
-  docker exec -u hadoop -d node4 /home/hadoop/sparkcmd.sh start
-  docker exec -u hadoop -d node5 /home/hadoop/sparkcmd.sh start
+  docker exec -u hadoop -d 1Large /home/hadoop/sparkcmd.sh start
   show_info
 }
 
@@ -33,27 +30,20 @@ fi
 
 if [[ $1 = "stop" ]]; then
   docker exec -u hadoop -d nodemaster /home/hadoop/sparkcmd.sh stop
-  docker exec -u hadoop -d node2 /home/hadoop/sparkcmd.sh stop
-  docker exec -u hadoop -d node3 /home/hadoop/sparkcmd.sh stop
-  docker exec -u hadoop -d node4 /home/hadoop/sparkcmd.sh stop
-  docker exec -u hadoop -d node5 /home/hadoop/sparkcmd.sh stop
-  docker stop nodemaster node2 node3 node4 node5
+  docker exec -u hadoop -d 1Large /home/hadoop/sparkcmd.sh stop
+  docker stop nodemaster 1Large
   exit
 fi
 
 if [[ $1 = "deploy" ]]; then
-  mkdir hadoop_mp
   docker rm -f `docker ps -a | grep sparkbase | awk '{ print $1 }'` # delete old containers
   docker network rm sparknet
   docker network create --driver bridge sparknet # create custom network
 
   # 3 nodes
   echo ">> Starting nodes master and worker nodes ..."
-  docker run -dP -v $(pwd)/hadoop_mp:/home/hadoop/sf --cpus="4" --memory="8g" --network sparknet --name nodemaster -h nodemaster -it sparkbase
-  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node2 -it -h node2 sparkbase
-  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node3 -it -h node3 sparkbase
-  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node4 -it -h node4 sparkbase
-  docker run -dP --cpus="4" --memory="8g" --network sparknet --name node5 -it -h node5 sparkbase
+  docker run -dP -v $(pwd)/hadoop_mp:/home/hadoop/sf --cpus="16" --memory="32g" --network sparknet --name nodemaster -h nodemaster -it sparkbase
+  docker run -dP --cpus="16" --memory="32g" --network sparknet --name 1Large -it -h 1Large sparkbase
 
   # Format nodemaster
   echo ">> Formatting hdfs ..."
@@ -72,7 +62,7 @@ if [[ $1 = "login" ]]; then
   exit
 fi
 
-echo "Usage: cluster.sh deploy|start|stop"
+echo "Usage: cluster-1L.sh deploy|start|stop"
 echo "                 deploy - create a new Docker network"
 echo "                 start  - start the existing containers"
 echo "                 stop   - stop the running containers" 

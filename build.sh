@@ -10,6 +10,7 @@ fi
 if [[ $# -eq 2 ]]
 then
     ./cluster-${2}.sh stop
+    docker system prune -f
 fi
 
 cp workers-${1} spark/config/workers

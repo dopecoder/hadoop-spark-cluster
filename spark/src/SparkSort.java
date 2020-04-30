@@ -16,8 +16,8 @@ public class SparkSort {
             System.exit(1);
         }*/
 
-        String in = "C:\\Users\\ayele\\Documents\\Grad School\\CS553\\sortData1";
-        String out = "C:\\Users\\ayele\\Documents\\Grad School\\CS553\\sort.out";
+        String in = "/user/hadoop/input";
+        String out = "/user/hadoop/output";
         JavaRDD<String> textFile = sparkContext.textFile(in);
         /*JavaPairRDD<String, String> keyValuePairs = textFile.mapToPair(obj -> {
             return new Tuple2<String, String>(substring(0,10),s.substring(10));

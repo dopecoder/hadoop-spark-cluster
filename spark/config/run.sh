@@ -21,7 +21,14 @@ do
     hadoop fs -rm -r -f /user/hadoop/output
 
     echo "Starting Spark Sort"
-    # hadoop jar /home/hadoop/sf/SparkSort/target/HadoopSort-*.jar /user/hadoop/input /user/hadoop/output > ~/sf/${file_size}-GB-${1}--logs.txt
+    spark-submit \
+    --class SparkSort \
+    --master yarn \
+    --deploy-mode cluster \
+    --driver-memory 4g \
+    --executor-memory 2g \
+    --executor-cores 1 \
+    /home/hadoop/src/SparkSort.jar    
     echo "Finished Spark Sort"
     hadoop fs -rm -r -f /user/hadoop/output
     hadoop fs -rm /user/hadoop/input/input.txt

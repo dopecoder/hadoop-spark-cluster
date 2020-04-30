@@ -1,15 +1,13 @@
 
 if [[ $# -lt 1 ]]; then
-do
     echo "Please mention the config : 1-Large 1-Small 4-Small"
     exit
-done
+fi
 
 
 if [[ $# -eq 2 ]]; then
-do
     ./cluster-${2}.sh stop
-done
+fi
 
 cp workers-${1} spark/config/workers
 

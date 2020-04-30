@@ -1,6 +1,6 @@
 
-hadoop javac -cp ../hadoop_mp SparkSort.java
+hadoop com.sun.tools.javac.Main -cp $SPARK_HOME/jars/ SparkSort.java
 jar cvf SparkSort.java SparkSort*.class
 
-hadoop javac HadoopSort.java
+hadoop com.sun.tools.javac.Main HadoopSort.java
 jar cf HadoopSort.jar HadoopSort*.class

@@ -38,6 +38,11 @@ COPY config/hadoop-env.sh /home/hadoop/
 COPY config/wc.sh /home/hadoop/
 COPY config/run.sh /home/hadoop/
 COPY config/perm.sh /home/hadoop/
+COPY config/perm.sh /home/hadoop/
+COPY ../src/HadoopSort.java /home/hadoop/src/
+COPY ../src/SparkSort.java /home/hadoop/src/
+COPY ../src/build.sh /home/hadoop/src/
+
 
 
 COPY config/core-site.xml config/hdfs-site.xml config/mapred-site.xml \

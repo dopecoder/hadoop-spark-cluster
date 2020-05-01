@@ -26,9 +26,9 @@ do
     --master yarn \
     --deploy-mode cluster \
     --driver-memory 4g \
-    --executor-memory 2g \
-    --executor-cores 1 \
-    --num-executors 50 \
+    --executor-memory 9g \
+    --executor-cores 5 \
+    --num-executors 3 \
     /home/hadoop/src/SparkSort.jar > ~/sf/${file_size}-GB-${1}-spark-logs.txt
     echo "Finished Spark Sort"
     hadoop fs -rm -r -f /user/hadoop/output

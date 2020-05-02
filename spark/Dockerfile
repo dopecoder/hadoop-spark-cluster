@@ -55,5 +55,11 @@ RUN cat /home/hadoop/hadoop-env.sh >> /home/hadoop/hadoop/etc/hadoop/hadoop-env.
 USER root
 RUN chown -R hadoop /home/hadoop/.ssh /home/hadoop/.bashrc /home/hadoop/.profile \
     /home/hadoop/data /home/hadoop/hadoop-env.sh
+
+RUN apt update
+RUN apt upgrade -y
+RUN apt install python3 python3-pip sysstat -y
+RUN pip3 install matplotlib numpy pandas
+
 #ENTRYPOINT ["/home/hadoop/sparkcmd.sh","start"]
 CMD service ssh start && sleep infinity

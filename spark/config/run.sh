@@ -17,7 +17,7 @@ do
     echo "Deleted the ${file_size} GB file in local FS..."
     cd ../../
     echo "Starting Hadoop Sort"
-    bash exec-hp.sh $file_size $1 #hadoop jar /home/hadoop/sf/HadoopSort/target/HadoopSort-*.jar /user/hadoop/input /user/hadoop/output > ~/sf/${file_size}-GB-${1}-hp-logs.txt
+    bash exec-hp.sh $file_size $1 $pidstat_file_name #hadoop jar /home/hadoop/sf/HadoopSort/target/HadoopSort-*.jar /user/hadoop/input /user/hadoop/output > ~/sf/${file_size}-GB-${1}-hp-logs.txt
     echo "Finished Hadoop Sort"
     # hadoop fs -rm /user/hadoop/input/input.txt
     hadoop fs -rm -r -f /user/hadoop/output
@@ -35,7 +35,7 @@ do
 
 
     echo "Starting Spark Sort"
-    bash exec-sp.sh $file_size $1
+    bash exec-sp.sh $file_size $1 $pidstat_file_name
     # time -p spark-submit \
     # --class SparkSort \
     # --master yarn \

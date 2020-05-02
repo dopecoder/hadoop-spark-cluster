@@ -40,7 +40,7 @@ COPY config/run.sh /home/hadoop/
 COPY config/perm.sh /home/hadoop/
 COPY config/exec-hp.sh /home/hadoop/
 COPY config/exec-sp.sh /home/hadoop/
-COPY config/nprocess_logs.py /home/hadoop/src/
+COPY config/nprocess_logs.py /home/hadoop/
 COPY src/HadoopSort.java /home/hadoop/src/
 COPY src/SparkSort.java /home/hadoop/src/
 COPY src/build.sh /home/hadoop/src/

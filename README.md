@@ -14,12 +14,17 @@
 
 ## Project Installation
 1) cd into project root
-2) cd scalabase
-3) ./build.sh    # This builds the base java+scala debian container from openjdk9
-4) cd ../spark
-5) ./build.sh    # This builds sparkbase image
-5) cd ..
-6) run ./build.sh login
+2) mkdir hadoop_mp
+3) cd hadoop_mp
+4) sudo wget http://www.ordinal.com/try.cgi/gensort-linux-1.5.tar.gz
+5) sudo tar -xzvf gensort-linux-1.5.tar.gz
+6) sudo mv 64 sort && sudo rm -rf 32
+7) cd ../scalabase
+8) ./build.sh    # This builds the base java+scala debian container from openjdk9
+9) cd ../spark
+10) ./build.sh    # This builds sparkbase image
+11) cd ..
+12) run ./build.sh login
 
 ## Running
 

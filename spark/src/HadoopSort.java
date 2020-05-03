@@ -72,7 +72,7 @@ public class HadoopSort {
     if(job.waitForCompletion(true) == true){
       long end = System.currentTimeMillis();
       long total = end - start;
-	    logger.info("Time Taken :", timeElapsed);
+	    logger.info("Time Taken :");
 	    logger.info(total);
 	    logger.info("\n");
       System.exit(0);

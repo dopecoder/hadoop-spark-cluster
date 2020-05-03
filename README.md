@@ -3,11 +3,16 @@
 
 ## Available Configs
 1) 1S - 1 small.instance
-1) 1L - 1 large.instance
-1) 4S - 4 small.instance
+2) 1L - 1 large.instance
+3) 4S - 4 small.instance
 
+## Docker installation
+1) sudo apt update
+2) sudo apt install docker.io
+3) sudo systemctl enable docker
+4) sudo systemctl start docker
 
-## Installation
+## Project Installation
 1) cd into project root
 2) cd scalabase
 3) ./build.sh    # This builds the base java+scala debian container from openjdk9
